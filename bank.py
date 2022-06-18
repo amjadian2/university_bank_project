@@ -15,27 +15,31 @@ def splitAtIntervals(r,s,txt):
         my_text += str(txt[i])
     return str(my_text)
 
-
+# this is the first step for the heap sort function
+# the binary tree or binary heap is simply implemented as an array
 def heapify(arr,acc, n, i):
+    # take the root as the largest among others
     largest = i
+    # determine the left and right children of the root
     l = 2 * i + 1 
     r = 2 * i + 2   
- 
+    # see if the children are larger than parent and swap 
     if l < n and arr[largest] < arr[l]:
         largest = l
  
     if r < n and arr[largest] < arr[r]:
         largest = r
- 
+	
+    # apply changes the the pointers to the actual array
     if largest != i:
         arr[i], arr[largest] = arr[largest], arr[i]
         acc[i], acc[largest] = acc[largest], acc[i]
+	# call the algorithm with the modified data
         heapify(arr,acc, n, largest)
  
-
+# use the heaify function to sort the arrays
 def heapSort(arr,acc):
     n = len(arr)
- 
     for i in range(n//2 - 1, -1, -1):
         heapify(arr,acc, n, i)
  
